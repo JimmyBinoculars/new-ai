@@ -1,0 +1,2 @@
+To download the image dataset I used, go to:
+https://www.kaggle.com/datasets/hsankesara/flickr-image-dataset/data
