@@ -19,7 +19,7 @@ from tqdm import tqdm
 # ---------------------------
 # Config
 # ---------------------------
-IMG_SIZE = 256
+IMG_SIZE = 1024
 SDR_SIZE = 8192
 SDR_SPARSITY = 0.03
 TOP_K = int(SDR_SIZE * SDR_SPARSITY)
