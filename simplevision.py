@@ -19,13 +19,13 @@ from tqdm import tqdm
 # ---------------------------
 # Config
 # ---------------------------
-IMG_SIZE = 512
+IMG_SIZE = 1024
 SDR_SIZE = 8192
 SDR_SPARSITY = 0.03
 TOP_K = int(SDR_SIZE * SDR_SPARSITY)
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 16
-EPOCHS = 5
+EPOCHS = 10
 LR = 1e-3
 TRAIN_DATA_PATH = "./train_images"  # folder of .jpg/.png files
 SAVE_PATH = "./simplevision_weights.pt"
@@ -33,7 +33,7 @@ SAVE_PATH = "./simplevision_weights.pt"
 # ---------------------------
 # Utility Functions
 # ---------------------------
-def load_images_from_folder(folder, size=IMG_SIZE, max_imgs=5000):
+def load_images_from_folder(folder, size=IMG_SIZE, max_imgs=30000):
     """
     Load images from a specified folder and resize them.
 
@@ -295,7 +295,7 @@ def train_model():
         criterion = nn.MSELoss()
         print("[INFO] Starting training (reconstruction + motion) ...")
         model.train()
-        motion_weight = 5.0
+        motion_weight = 1.0
         motion_threshold = 0.1
 
         # Configure multiprocessing for data loading
