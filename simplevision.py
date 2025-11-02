@@ -19,7 +19,7 @@ from tqdm import tqdm
 # ---------------------------
 # Config
 # ---------------------------
-IMG_SIZE = 128
+IMG_SIZE = 512
 SDR_SIZE = 8192
 SDR_SPARSITY = 0.03
 TOP_K = int(SDR_SIZE * SDR_SPARSITY)
@@ -281,6 +281,7 @@ def train_model():
     try:
         print(f"[INFO] Loading data from {TRAIN_DATA_PATH} ...")
         imgs = load_images_from_folder(TRAIN_DATA_PATH)
+        print(f"[INFO] Found {len(imgs)} image(s) in '{TRAIN_DATA_PATH}'")
         if len(imgs) == 0:
             print("[ERROR] No training images found. Put some in ./train_images/")
             return
@@ -489,7 +490,6 @@ def run_model():
         # reconstruct image for display
         recon_img = recon.squeeze().permute(1, 2, 0).cpu().numpy()
         recon_img = (recon_img * 255).astype(np.uint8)
-        recon_img = cv2.resize(recon_img, (orig_w, orig_h))
         recon_img = cv2.cvtColor(recon_img, cv2.COLOR_RGB2BGR)
 
         # ---- display ----
